@@ -6,7 +6,7 @@
 #include "Components/InputComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-
+#include "Framework/MainPlayerState.h"
 
 AMainPlayer::AMainPlayer()
 {
@@ -18,6 +18,9 @@ AMainPlayer::AMainPlayer()
 void AMainPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMainPlayer::SetTeamColor, 0.5f, false);
 	
 }
 
@@ -70,6 +73,16 @@ void AMainPlayer::SetRunState(bool bIsRunning)
 	else
 	{
 		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	}
+}
+
+void AMainPlayer::SetTeamColor()
+{
+	AMainPlayerState* PS = GetPlayerState<AMainPlayerState>();
+
+	if (PS)
+	{
+		PS->OnRep_TeamIndex();
 	}
 }
 

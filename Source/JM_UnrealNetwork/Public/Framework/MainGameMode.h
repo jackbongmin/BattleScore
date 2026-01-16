@@ -19,6 +19,8 @@ public:
 
 	virtual AActor* ChoosePlayerStart_Implementation(AController* Player) override;
 
+	virtual void PostLogin(APlayerController* NewPlayer) override;
+
 private:
 	int32 LoginCount = 0;
 

@@ -43,4 +43,7 @@ protected:
 	float WalkSpeed = 300.0f;
 	float RunSpeed = 800.0f;
 
+	UFUNCTION(BlueprintCallable)
+	void SetTeamColor();
+
 };
