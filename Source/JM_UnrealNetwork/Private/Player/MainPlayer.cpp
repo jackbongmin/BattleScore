@@ -21,7 +21,6 @@ void AMainPlayer::BeginPlay()
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMainPlayer::SetTeamColor, 0.5f, false);
-	
 }
 
 void AMainPlayer::Tick(float DeltaTime)

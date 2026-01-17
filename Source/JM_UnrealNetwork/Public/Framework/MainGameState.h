@@ -31,4 +31,12 @@ protected:
 	UPROPERTY(Replicated)
 	float RemainingTime;
 
+public:
+	UPROPERTY(ReplicatedUsing = OnRep_GameOver)
+	bool bIsGameOver = false;
+
+	UFUNCTION()
+	void OnRep_GameOver();
+
+
 };

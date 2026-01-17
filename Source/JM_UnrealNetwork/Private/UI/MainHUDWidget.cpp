@@ -7,6 +7,7 @@
 #include "Framework/MainGameState.h" 
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/GameStateBase.h"
+#include "UI/EndingWidget.h"
 
 
 void UMainHUDWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -31,5 +32,15 @@ void UMainHUDWidget::UpdateScore(int32 PlayerIndex, int32 NewScore)
 	else if (PlayerIndex == 1 && Score2PText)
 	{
 		Score2PText->SetText(FText::AsNumber(NewScore));
+	}
+}
+
+void UMainHUDWidget::ShowGameOver(FString WinnerName)
+{
+	if (EndingScreen)
+	{
+		EndingScreen->SetVisibility(ESlateVisibility::Visible);
+
+		EndingScreen->UpdateWinner(WinnerName);
 	}
 }

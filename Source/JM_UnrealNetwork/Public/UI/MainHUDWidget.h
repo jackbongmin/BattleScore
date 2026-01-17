@@ -19,6 +19,8 @@ public:
 
 	void UpdateScore(int32 PlayerIndex, int32 NewScore);
 
+	void ShowGameOver(FString WinnerName);
+
 public:
 
 	UPROPERTY(meta = (BindWidget))
@@ -29,4 +31,7 @@ public:
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* Score2PText;
+
+	UPROPERTY(meta = (BindWidget))
+	class UEndingWidget* EndingScreen;
 };
