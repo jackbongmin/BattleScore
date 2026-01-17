@@ -8,14 +8,17 @@
 
 AMainPlayerState::AMainPlayerState()
 {
+
 	TeamIndex = -1;
 }
+
 
 void AMainPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(AMainPlayerState, TeamIndex);
+
 }
 
 void AMainPlayerState::SetTeamIndex(int32 NewTeamIndex)

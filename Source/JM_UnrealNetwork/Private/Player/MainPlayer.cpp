@@ -88,11 +88,11 @@ void AMainPlayer::SetTeamColor()
 
 void AMainPlayer::Server_StopRun_Implementation()
 {
-	SetRunState(true);
+	SetRunState(false);
 }
 
 void AMainPlayer::Server_StartRun_Implementation()
 {
-	SetRunState(false);
+	SetRunState(true);
 }
 

@@ -21,6 +21,7 @@ public:
 
 	void SetTeamIndex(int32 NewTeamIndex);
 
+
 protected:
 	UPROPERTY(ReplicatedUsing = OnRep_TeamIndex)
 	int32 TeamIndex;
@@ -28,4 +29,5 @@ protected:
 public:
 	UFUNCTION()
 	void OnRep_TeamIndex();
+
 };
