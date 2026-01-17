@@ -8,6 +8,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Framework/MainHUD.h"
 #include "UI/MainHUDWidget.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 AMainGameState::AMainGameState()
 {
@@ -102,6 +104,16 @@ void AMainGameState::OnRep_GameOver()
 				}
 
 				Widget->ShowGameOver(WinnerText);
+
+				ACharacter* MyCharacter = Cast<ACharacter>(PC->GetPawn());
+				if (MyCharacter)
+				{
+					MyCharacter->GetCharacterMovement()->StopMovementImmediately();
+					MyCharacter->DisableInput(PC);
+				}
+
+				PC->SetShowMouseCursor(true);
+				PC->SetInputMode(FInputModeUIOnly());
 			}
 		}
 	}

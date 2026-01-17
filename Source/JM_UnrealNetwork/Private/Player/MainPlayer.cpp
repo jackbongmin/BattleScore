@@ -7,6 +7,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Framework/MainPlayerState.h"
+#include "Kismet/GameplayStatics.h"	
 
 AMainPlayer::AMainPlayer()
 {
@@ -19,8 +20,17 @@ void AMainPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FTimerHandle TimerHandle;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMainPlayer::SetTeamColor, 0.5f, false);
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->SetShowMouseCursor(false);
+
+		FInputModeGameOnly GameInputMode;
+		PC->SetInputMode(GameInputMode);
+	}
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMainPlayer::SetTeamColor, 0.1f, false);
+
+
 }
 
 void AMainPlayer::Tick(float DeltaTime)
@@ -79,9 +89,12 @@ void AMainPlayer::SetTeamColor()
 {
 	AMainPlayerState* PS = GetPlayerState<AMainPlayerState>();
 
-	if (PS)
+	if (PS && PS->GetTeamIndex() != -1)
 	{
 		PS->OnRep_TeamIndex();
+
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
 	}
 }
 

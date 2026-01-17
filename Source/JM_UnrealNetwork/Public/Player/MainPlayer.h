@@ -46,4 +46,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void SetTeamColor();
 
+protected:
+	FTimerHandle TimerHandle;
+
 };
