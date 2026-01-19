@@ -14,6 +14,8 @@ AMainPlayerState::AMainPlayerState()
 	PrimaryActorTick.bCanEverTick = false;
 	TeamIndex = -1;
 	GameScore = 0;
+
+	NetUpdateFrequency = 100.0f;
 }
 
 
@@ -42,6 +44,8 @@ void AMainPlayerState::AddScore(int32 Amount)
 		GameScore += Amount;
 
 		OnRep_GameScore();
+
+		ForceNetUpdate();
 
 		UE_LOG(LogTemp, Warning, TEXT("Player %d Score Updated: %d"), TeamIndex, GameScore);
 	}
