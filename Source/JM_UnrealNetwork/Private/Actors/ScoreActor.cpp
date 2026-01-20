@@ -36,6 +36,11 @@ void AScoreActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
     Super::NotifyActorBeginOverlap(OtherActor);
 
+    if (!HasAuthority())
+    {
+        return;
+    }
+
     if (HasAuthority())
     {
         ACharacter* Character = Cast<ACharacter>(OtherActor);

@@ -14,6 +14,11 @@ AMainPlayer::AMainPlayer()
 	PrimaryActorTick.bCanEverTick = true;
 
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+
+	NetUpdateFrequency = 100.0f;
+	MinNetUpdateFrequency = 33.0f; 
+
+	GetCharacterMovement()->SetIsReplicated(true);
 }
 
 void AMainPlayer::BeginPlay()
